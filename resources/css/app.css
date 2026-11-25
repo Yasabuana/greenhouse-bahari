@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-night-950: #060c15;
+    --color-night-900: #0a1421;
+    --color-night-800: #101d2e;
+    --color-night-700: #1a2b42;
+}
+
+@layer base {
+    html {
+        color-scheme: light;
+        scroll-behavior: smooth;
+    }
+
+    html.dark {
+        color-scheme: dark;
+    }
+
+    body {
+        @apply bg-slate-50 text-slate-800 antialiased;
+    }
+
+    .dark body {
+        background-color: var(--color-night-950);
+        color: #e2e8f0;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    ::selection {
+        background-color: rgba(16, 185, 129, 0.18);
+        color: #064e3b;
+    }
+
+    .dark ::selection {
+        background-color: rgba(52, 211, 153, 0.25);
+        color: #ecfdf5;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border: 2px solid #f1f5f9;
+        border-radius: 9999px;
+    }
+
+    .dark ::-webkit-scrollbar-track {
+        background: #060c15;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+        background: #1a2b42;
+        border: 2px solid #060c15;
+    }
+}
+
+@layer components {
+    .panel {
+        @apply rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-200/60 dark:border-white/[0.06] dark:bg-night-900/70 dark:shadow-xl dark:shadow-black/20 dark:backdrop-blur-sm;
+    }
+
+    .panel-title {
+        @apply text-sm font-semibold text-slate-800 dark:text-slate-100;
+    }
+
+    .eyebrow {
+        @apply text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-500;
+    }
+
+    .metric {
+        @apply rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 transition-colors duration-300 hover:border-emerald-500/40 dark:border-white/[0.05] dark:bg-white/[0.02] dark:hover:border-emerald-400/25;
+    }
+
+    .nav-link {
+        @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.04] dark:hover:text-slate-100;
+    }
+
+    .nav-link-active {
+        @apply bg-emerald-500/10 text-emerald-700 ring-1 ring-inset ring-emerald-500/25 dark:bg-emerald-400/10 dark:text-emerald-300 dark:ring-emerald-400/20;
+    }
+
+    .badge {
+        @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ring-1 ring-inset;
+    }
+
+    .field {
+        @apply w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none transition focus:border-emerald-500/60 focus:ring-2 focus:ring-emerald-500/20 dark:border-white/10 dark:bg-night-950/70 dark:text-slate-200 dark:focus:border-emerald-400/50 dark:focus:ring-emerald-400/20;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-600 dark:bg-emerald-400 dark:text-night-950 dark:hover:bg-emerald-300;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-600 transition hover:border-slate-300 hover:bg-slate-100 dark:border-white/10 dark:bg-transparent dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-white/[0.04];
+    }
+}
+
